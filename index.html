@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>Los Angeles Mayor | 2026 Election Results</title><meta name="description" content="Los Angeles mayor election results from the LA County Registrar, with prior vote counts, differences and official candidate photos.">
+<style>
+
+:root{color-scheme:light;--paper:#f6f7f7;--white:#fff;--ink:#161c23;--muted:#647483;--line:#dce2e5;--blue:#235f94;--pos:#187b65;--neg:#aa413d;--shadow:0 3px 16px rgba(20,38,53,.045);--wash:#edf2f6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.4}
+button,input{font:inherit}button{touch-action:manipulation}a{color:var(--blue)}
+.shell{max-width:1140px;margin:auto;padding:24px 26px 58px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding:0 0 18px}
+.identity{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+.identity:before{content:"";width:5px;height:22px;border-radius:2px;background:var(--blue)}
+.identity span{opacity:.45}
+.top-right{display:flex;align-items:center;gap:11px}
+.source-link{font-size:12px;color:var(--muted);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.btn{border:1px solid transparent;border-radius:11px;background:var(--blue);color:#fff;padding:12px 18px;min-height:48px;line-height:1.2;font-weight:760;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;transition:background .15s,transform .15s}
+.btn:active{transform:scale(.985)}.btn:hover{filter:brightness(.95)}.btn:disabled{cursor:wait;opacity:.62}
+.btn.secondary{background:var(--white);color:var(--ink);border-color:var(--line)}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.title-area{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:39px 0 20px}
+.eyebrow{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em;font-weight:800;margin-bottom:9px}
+h1{font-size:clamp(43px,5.4vw,65px);line-height:1.04;letter-spacing:-.056em;margin:0;font-weight:840}
+.sub{margin:11px 0 0;color:var(--muted);font-size:14px}
+.status-chip{display:inline-flex;align-items:center;gap:9px;border-radius:100px;border:1px solid var(--line);background:var(--white);padding:9px 12px;color:var(--muted);font-size:12px;font-weight:750;white-space:nowrap}
+.status-chip i{width:7px;height:7px;background:#e0a34a;border-radius:50%;flex:none}
+.notice{display:flex;gap:11px;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:12px;margin:0 0 16px;padding:12px 14px;font-size:12px;color:var(--muted)}
+.notice .dot{width:8px;height:8px;border-radius:50%;background:#778b9b;margin-top:6px;flex:none}
+.notice small{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+.notice.good{background:#edf8f4;border-color:#b6ded1;color:#145e49}.notice.good .dot{background:#168465}
+.notice.error{background:#fff1f0;border-color:#ecc0bd;color:#97443d}.notice.error .dot{background:#c55045}
+.leader-strip{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:23px 27px;gap:0;box-shadow:var(--shadow);margin-bottom:15px}
+.metric{border-left:1px solid var(--line);padding-left:25px;min-width:0}
+.metric:first-child{border:0;padding-left:0}
+.metric-label{font-size:12px;color:var(--muted);font-weight:760;margin-bottom:6px}
+.metric-big{font-size:clamp(29px,3.3vw,39px);font-weight:820;letter-spacing:-.043em;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric-details{font-size:12px;color:var(--muted);margin-top:6px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.candidate{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);min-width:0}
+.candidate .inside{padding:21px 22px 18px}
+.person{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.photo-wrap{flex:none;width:106px;height:104px;overflow:hidden;background:var(--wash);border-radius:10px;position:relative}
+.photo-wrap img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 23%}
+.photo-wrap:has(img[data-failed="true"]) img{display:none}
+.photo-wrap:has(img[data-failed="true"]):after{content:'Photo unavailable';position:absolute;inset:0;display:flex;align-items:center;text-align:center;justify-content:center;font-size:11px;padding:7px;color:var(--muted)}
+.candidate-name{font-size:clamp(22px,2.7vw,30px);font-weight:800;letter-spacing:-.045em;line-height:1.09}
+.tag{color:var(--muted);font-size:11px;font-weight:790;text-transform:uppercase;letter-spacing:.05em;margin-top:11px}
+.tag.lead{color:var(--pos)}
+.vote-line{display:flex;gap:9px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.votes{font-size:clamp(33px,3.5vw,45px);font-weight:850;line-height:1.1;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.pct{font-size:clamp(27px,3.1vw,38px);font-weight:770;letter-spacing:-.043em;font-variant-numeric:tabular-nums}
+.unit{font-size:11px;color:var(--muted);margin-top:4px}
+.share-bar{height:8px;margin:17px 0 12px;background:var(--wash);border-radius:30px;overflow:hidden}
+.share-fill{height:100%;background:#367da5;width:50%;transition:width .4s ease}
+.candidate.bass .share-fill{background:#738291}
+.candidate-delta{display:flex;align-items:center;gap:7px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:12px;font-weight:670}
+.candidate-delta:before{content:'+';display:grid;place-items:center;background:var(--wash);color:var(--blue);height:18px;width:18px;border-radius:5px;font-size:14px}
+.candidate-photo-credit{margin-top:10px;font-size:11px}
+.previous-section{margin-top:29px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
+h2{font-size:21px;letter-spacing:-.035em;font-weight:800;margin:0}
+.sec-desc{font-size:12px;color:var(--muted);margin:5px 0 0}
+.table-card{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+th{text-align:right;color:var(--muted);font-size:11px;letter-spacing:.055em;text-transform:uppercase;background:var(--wash);padding:14px 18px}
+td{font-size:14px;padding:16px 18px;border-top:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}td:first-child{font-weight:760}
+.positive{color:var(--pos);font-weight:780}.negative{color:var(--neg);font-weight:780}.neutral{color:var(--muted)}
+.hint{font-size:11px;line-height:1.4;color:var(--muted);margin:9px 0 0}
+.history-box summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:50px}
+.history-box summary::-webkit-details-marker{display:none}
+.history-box .chevron{display:inline-block;border-right:2px solid currentColor;border-bottom:2px solid currentColor;width:9px;height:9px;transform:rotate(45deg);margin:0 6px 5px 0;transition:transform .2s}
+.history-box[open] .chevron{transform:rotate(225deg);margin-bottom:0;margin-top:6px}
+.history-details{padding-top:3px}
+.history-actions{display:flex;justify-content:flex-end;margin-bottom:12px}
+.hist-scroll{max-height:410px;overflow:auto}
+.hist-scroll table td{font-size:12px;padding:13px 18px}
+.hist-scroll tr:first-child{background:var(--wash)}
+.other{display:flex;justify-content:space-between;gap:18px;border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+.other .left{max-width:750px}.other p{color:var(--muted);font-size:12px;line-height:1.48;margin:7px 0}
+.files{display:flex;align-items:center;flex:none}
+input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+.file-label{cursor:pointer;font-size:12px;font-weight:780;color:var(--blue);border-bottom:1px solid currentColor}
+.spinner{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+html[data-theme="dark"]{color-scheme:dark;--paper:#101820;--white:#1b2834;--ink:#eef5fa;--muted:#a9bac9;--line:#354959;--blue:#78b5e7;--pos:#70ddae;--neg:#ffaaa4;--wash:#293a47;--shadow:0 9px 26px rgba(0,0,0,.16)}
+html[data-theme="dark"] .btn:not(.secondary){background:#327cba;color:white}
+html[data-theme="dark"] .notice.good{background:#163f34;border-color:#3f745f;color:#baf2d6}
+html[data-theme="dark"] .notice.error{background:#43292d;border-color:#8b5352;color:#ffc2bb}
+html[data-theme="dark"] .candidate.bass .share-fill{background:#91a5b5}
+html[data-theme="dark"] .identity span{opacity:.6}
+/* Estimated expected-vote progress — independent of candidate vote shares. */
+.count-progress{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px 25px 17px;margin:-1px 0 15px}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.progress-title{font-size:15px;font-weight:800;letter-spacing:-.02em}
+.progress-pct{font-size:clamp(30px,3.4vw,41px);font-weight:850;letter-spacing:-.055em;font-variant-numeric:tabular-nums;line-height:1.05;white-space:nowrap}
+.progress-explainer{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.progress-track{height:12px;border-radius:999px;background:var(--wash);overflow:hidden;margin:13px 0 8px}
+.progress-fill{height:100%;background:#367da5;width:0%;border-radius:999px;transition:width .4s ease}
+.progress-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;line-height:1.4}
+.progress-bottom .remaining{font-weight:750;color:var(--ink)}
+@media(max-width:740px){.count-progress{padding:14px 15px 13px;border-radius:13px;margin:0 0 11px}.progress-title{font-size:13px}.progress-pct{font-size:30px}.progress-track{height:10px;margin:11px 0 8px}.progress-bottom{display:block}.progress-bottom .remaining{display:block;margin-bottom:4px}}
+@media(max-width:900px){.leader-strip{padding:18px;gap:10px}.metric{padding-left:15px}.person{gap:12px}.candidate .inside{padding:17px}.photo-wrap{width:94px;height:95px}.votes{font-size:32px}.pct{font-size:27px}}
+@media(max-width:740px){
+  html{scroll-padding-top:70px}
+  .shell{padding:0 14px 118px;max-width:540px}
+  .top{position:sticky;top:0;z-index:30;margin:0 -14px;padding:12px 16px;min-height:60px;background:var(--paper);border-bottom:1px solid var(--line);gap:10px}
+  .identity{font-size:10px;letter-spacing:.105em;gap:7px;white-space:nowrap}.identity:before{width:4px;height:21px}
+  .top-right{gap:6px}.source-link{display:none}
+  #themeBtn{min-height:38px;padding:8px 11px;font-size:12px;border-radius:9px}
+  .refresh-dock{position:fixed;z-index:40;bottom:0;left:0;right:0;background:var(--paper);padding:10px max(14px,calc((100vw - 500px)/2)) max(12px,env(safe-area-inset-bottom));border-top:1px solid var(--line);box-shadow:0 -7px 28px rgba(8,20,30,.14)}
+  #refreshBtn{width:100%;height:54px;border-radius:12px;font-size:16px;font-weight:800;box-shadow:0 5px 13px rgba(0,0,0,.09)}
+  .title-area{display:block;padding:24px 0 15px}
+  h1{font-size:clamp(35px,9.2vw,43px);line-height:1.04;letter-spacing:-.055em}
+  .eyebrow{font-size:10px;margin-bottom:6px;letter-spacing:.1em}
+  .sub{font-size:12px;margin:8px 0 10px}
+  .status-chip{font-size:11px;padding:6px 10px}
+  .notice{padding:11px 12px;margin-bottom:12px;font-size:12px}
+  .leader-strip{grid-template-columns:1fr 1fr;gap:14px 0;padding:16px;margin-bottom:11px}
+  .metric:first-child{grid-column:1/-1;border-bottom:1px solid var(--line);padding:0 0 13px}
+  .metric:nth-child(2){border-left:0;padding-left:0}
+  .metric:nth-child(3){padding-left:15px}
+  .metric-label{font-size:11px;margin-bottom:4px}
+  .metric-big{font-size:27px}.metric:first-child .metric-big{font-size:30px}
+  .metric-details{font-size:10px;line-height:1.3;margin-top:3px}
+  .two{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .candidate{border-radius:13px}
+  .candidate .inside{padding:10px 10px 13px}
+  .person{display:block;margin-bottom:12px}
+  .photo-wrap{width:100%;height:124px;border-radius:8px;margin-bottom:10px}
+  .candidate-name{font-size:clamp(16px,4.5vw,20px);letter-spacing:-.04em;min-height:39px;line-height:1.1}
+  .tag{margin-top:4px;font-size:9px;min-height:13px;letter-spacing:.035em}
+  .vote-line{display:flex;flex-direction:column-reverse;align-items:flex-start;gap:1px}
+  .pct{font-size:clamp(28px,7vw,33px);line-height:1.05;letter-spacing:-.06em}
+  .votes{font-size:clamp(24px,6.15vw,29px);line-height:1.15;letter-spacing:-.048em}
+  .unit{font-size:10px;margin-top:0}
+  .share-bar{margin:11px 0 10px;height:6px}
+  .candidate-delta{gap:4px;font-size:10px;line-height:1.35;padding-top:8px;min-height:39px}
+  .candidate-delta:before{width:14px;height:14px;flex:none;font-size:10px}
+  .candidate-photo-credit{display:none}
+  .previous-section{margin-top:22px}
+  h2{font-size:19px}.sec-head{display:block;margin-bottom:11px}.sec-desc{font-size:11px}
+  .sec-head .status-chip{margin-top:7px}
+  .comparison table,.comparison tbody{display:block;width:100%}.comparison thead{display:none}
+  .comparison tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:12px;border-top:1px solid var(--line)}
+  .comparison tr:first-child{border-top:0}
+  .comparison td{display:block;white-space:normal;border:0;padding:0;text-align:left;font-size:clamp(13px,3.7vw,16px);min-width:0}
+  .comparison td:first-child{grid-column:1/-1;font-size:13px;margin-bottom:2px}
+  .comparison td:nth-child(2)::before{content:'PREVIOUS'}
+  .comparison td:nth-child(3)::before{content:'LATEST'}
+  .comparison td:nth-child(4)::before{content:'NEW VOTES'}
+  .comparison td:not(:first-child)::before{display:block;font-size:9px;color:var(--muted);letter-spacing:.07em;margin-bottom:4px;font-weight:790}
+  .history-box summary{padding:12px 0;min-height:50px}.history-box summary h2{margin:0}
+  .history-box .sec-desc{margin-top:3px}
+  .hist-scroll{max-height:none}
+  .history-table table,.history-table tbody{display:block}
+  .history-table thead{display:none}
+  .history-table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 12px;border-top:1px solid var(--line);padding:12px 14px}
+  .history-table tr:first-child{border-top:0}
+  .history-table td{padding:0!important;border:0;display:block!important;text-align:left!important;white-space:normal;font-size:13px!important}
+  .history-table td:first-child{grid-column:1/-1;font-size:11px!important}
+  .history-table td:nth-child(2)::before{content:'RAMAN'}
+  .history-table td:nth-child(3)::before{content:'BASS'}
+  .history-table td:nth-child(4)::before{content:'LEAD'}
+  .history-table td:nth-child(5)::before{content:'TOTAL'}
+  .history-table td:not(:first-child)::before{display:block;font-size:9px;letter-spacing:.075em;color:var(--muted);margin-bottom:3px;font-weight:800}
+  .other{display:block;padding-top:16px;margin-top:20px}.other p{font-size:11px}.files{margin-top:10px}
+  .btn.secondary{font-size:12px;min-height:44px}
+}
+@media(max-width:360px){.candidate .inside{padding:9px}.photo-wrap{height:105px}.pct{font-size:27px}.votes{font-size:23px}.candidate-name{font-size:16px}.shell{padding-left:11px;padding-right:11px}.top{margin-left:-11px;margin-right:-11px;padding-left:12px;padding-right:12px}.identity{font-size:9px}#themeBtn{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+
+/* Hosted-site controls and loading states */
+.sync-line{color:var(--muted);font-size:12px;margin:9px 0 0}
+.updated-time{font-weight:750;color:var(--ink)}
+.data-chip{margin:16px 0;padding:12px 15px;border:1px solid var(--line);border-radius:10px;background:var(--white);font-size:12px;color:var(--muted)}
+.meta-quiet{font-size:11px;color:var(--muted)}
+@media(max-width:740px){.sync-line{font-size:11px}.other{padding-bottom:10px}}
+</style></head><body><div class="shell">
+<header class="top"><div class="identity">Los Angeles <span>/</span> Election 2026</div><div class="top-right"><a class="source-link" href="https://results.lavote.gov/" target="_blank" rel="noopener">Official LA County data ↗</a><button class="btn secondary" id="themeBtn" type="button">Light mode</button><div class="refresh-dock"><button class="btn" id="refreshBtn" type="button" aria-label="Refresh published results"><svg id="refreshIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.3 9A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.7-2"/></svg><span id="refreshLabel">Refresh votes</span></button></div></div></header>
+<main>
+<div class="title-area"><div><div class="eyebrow">November 3, 2026 · General election</div><h1>Los Angeles Mayor</h1><p class="sub" id="reportTime">Waiting for the first verified LA County report</p></div><span class="status-chip"><i></i> Uncertified results</span></div>
+<div class="notice" id="status" role="status" aria-live="polite"><span class="dot"></span><div id="statusMessage">Loading the latest published election report…</div></div>
+<section class="leader-strip" aria-label="Mayoral race summary"><div class="metric"><div class="metric-label">Currently leading</div><div class="metric-big" id="leaderName">—</div><div class="metric-details" id="leaderSub">A lead is not an election call</div></div><div class="metric"><div class="metric-label">Vote margin</div><div class="metric-big" id="leadNum">—</div><div class="metric-details" id="leadSub">Awaiting count</div></div><div class="metric"><div class="metric-label">Total votes counted</div><div class="metric-big" id="totalNum">—</div><div class="metric-details">In this mayoral contest</div></div></section>
+<section class="count-progress" aria-label="Estimated percentage of expected mayoral votes counted">
+  <div class="progress-top"><div><div class="progress-title">Estimated votes counted</div><div class="progress-explainer">Estimate of all expected mayoral votes, not a candidate's share</div></div><div class="progress-pct" id="countProgressPct">—</div></div>
+  <div class="progress-track" id="countProgressTrack" role="progressbar" aria-label="Estimated proportion of mayoral votes counted" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Not available"><div class="progress-fill" id="countProgressFill"></div></div>
+  <div class="progress-bottom"><span class="remaining" id="countProgressRemaining">Awaiting verified count</span><span id="countProgressSource">Based on a published expected-vote estimate; this is not an official LA County counting percentage.</span></div>
+</section>
+<section class="two" aria-label="Candidate results">
+<article class="candidate" id="ramanCard"><div class="inside"><div class="person"><div class="photo-wrap"><img src="https://cd4.lacity.gov/wp-content/uploads/2023/10/A6013-189.jpg" alt="Nithya Raman official Los Angeles City Council portrait" loading="eager" referrerpolicy="no-referrer" onerror="this.dataset.failed='true'"></div><div><div class="candidate-name">Nithya Raman</div><div class="tag" id="ramanTag">Candidate</div></div></div><div class="vote-line"><div class="votes" id="ramanVotes">—</div><div class="pct" id="ramanPct">—</div></div><div class="unit">votes</div><div class="share-bar"><div class="share-fill" id="ramanBar" style="width:0%"></div></div><div class="candidate-delta" id="ramanMiniDelta">Awaiting official count</div><div class="candidate-photo-credit"><a target="_blank" rel="noopener" href="https://cd4.lacity.gov/press-kit/">Official LA City Council headshot ↗</a></div></div></article>
+<article class="candidate bass" id="bassCard"><div class="inside"><div class="person"><div class="photo-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Mayor_Karen_Bass_official_portrait.jpg/500px-Mayor_Karen_Bass_official_portrait.jpg" alt="Karen Bass official Los Angeles mayoral portrait" loading="eager" referrerpolicy="no-referrer" onerror="this.dataset.failed='true'"></div><div><div class="candidate-name">Karen Bass</div><div class="tag" id="bassTag">Incumbent</div></div></div><div class="vote-line"><div class="votes" id="bassVotes">—</div><div class="pct" id="bassPct">—</div></div><div class="unit">votes</div><div class="share-bar"><div class="share-fill" id="bassBar" style="width:0%"></div></div><div class="candidate-delta" id="bassMiniDelta">Awaiting official count</div><div class="candidate-photo-credit"><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Mayor_Karen_Bass_official_portrait.jpg">Official portrait ↗</a></div></div></article>
+</section>
+<section class="previous-section" aria-labelledby="previousTitle"><div class="sec-head"><div><h2 id="previousTitle">Since the last count</h2><p class="sec-desc" id="comparisonInfo">Compares consecutive official bulletins</p></div><span class="status-chip" id="changeChip">Waiting for reports</span></div><div class="table-card comparison"><table><thead><tr><th>Candidate</th><th>Previous</th><th>Latest</th><th>New votes</th></tr></thead><tbody><tr><td>Nithya Raman</td><td id="ramanOld">—</td><td id="ramanNew">—</td><td id="ramanDelta">—</td></tr><tr><td>Karen Bass</td><td id="bassOld">—</td><td id="bassNew">—</td><td id="bassDelta">—</td></tr><tr><td>Total counted</td><td id="totalOld">—</td><td id="totalNew">—</td><td id="totalDelta">—</td></tr></tbody></table></div><p class="hint" id="changeHint">Previous counts are saved by the GitHub workflow, not guessed.</p></section>
+<section class="previous-section" aria-labelledby="historyTitle"><details class="history-box" id="historyDetails"><summary><div><h2 id="historyTitle">Previous updates</h2><p class="sec-desc">Timestamped counts saved on GitHub</p></div><span class="chevron" aria-hidden="true"></span></summary><div class="history-details"><div class="history-actions"><button class="btn secondary" id="exportBtn" type="button">Export history CSV</button></div><div class="table-card hist-scroll history-table"><table><thead><tr><th>Report</th><th>Raman</th><th>Bass</th><th>Lead</th><th>Total</th></tr></thead><tbody id="historyBody"></tbody></table></div></div></details></section>
+<div class="data-chip" id="syncInfo">GitHub's background updater has not published a verified report yet.</div>
+</main><footer class="other"><div class="left"><strong style="font-size:12px">Where the numbers come from</strong><p>The data is retrieved by GitHub Actions from <a href="https://www.lavote.gov/home/voting-elections/current-elections/election-results-file-downloads" target="_blank" rel="noopener">LA County's official election JSON file</a>. Refresh reads the latest published snapshot on this site. A new county report can appear only after GitHub Actions successfully checks and republishes it. No PC server and no website-side access token are needed.</p><p>The published numbers are preliminary. "Leading" means ahead in counted votes, not a declared election winner. The estimated vote-counted percentage is separate from official votes: it uses ABC7’s previously published 51% expected-vote estimate when 602,896 mayoral votes were counted. The baseline may change, and this estimate should not be treated as an exact live percentage. On an upstream fetch error the last verified report stays published.</p><p id="metaSource">No verified county results published yet.</p></div><div class="files"><a href="./data/results.json" target="_blank" rel="noopener" class="file-label">View published JSON</a></div></footer>
+</div><script>
+(()=>{
+'use strict';
+const DATA_URL='./data/results.json';
+// ABC7 reported 51% expected vote counted alongside 303,855 Bass + 299,041 Raman
+// (602,896 total) at the November 3, 11:24 PM county bulletin. Their expected-vote
+// percentage is a rounded editorial estimate, not an LA County official total.
+// Recompute an *approximation* using that implied baseline, not an exact live turnout.
+const EXPECTED_REFERENCE=Object.freeze({counted:602896,percent:51,source:'ABC7 Los Angeles',url:'https://abc7.com/politics/elections/local/'});
+function renderEstimatedProgress(counted){
+  const display=$('countProgressPct'),fill=$('countProgressFill'),track=$('countProgressTrack');
+  const remaining=$('countProgressRemaining'),source=$('countProgressSource');
+  const basis='Based on '+EXPECTED_REFERENCE.source+' reporting 51% at 602,896 counted votes. An approximation, not an official county percentage; the expected total may change.';
+  if(!Number.isSafeInteger(counted)||counted<=0){
+    display.textContent='—';fill.style.width='0%';track.removeAttribute('aria-valuenow');track.setAttribute('aria-valuetext','Not available');
+    remaining.textContent='Awaiting verified count';source.textContent=basis;return;
+  }
+  const expectedTotal=EXPECTED_REFERENCE.counted/(EXPECTED_REFERENCE.percent/100);
+  const progress=100*counted/expectedTotal;
+  // Don't display a misleading 100% if the originally expected turnout is exceeded.
+  if(!Number.isFinite(progress)||progress>100){
+    display.textContent='—';fill.style.width='0%';track.removeAttribute('aria-valuenow');track.setAttribute('aria-valuetext','Estimate expired');
+    remaining.textContent='Expected-vote estimate needs updating';source.textContent=basis;return;
+  }
+  const rounded=Math.round(progress);
+  display.textContent='≈ '+rounded+'%';fill.style.width=progress.toFixed(2)+'%';
+  track.setAttribute('aria-valuenow',String(rounded));track.setAttribute('aria-valuetext','Approximately '+rounded+' percent counted');
+  remaining.textContent='≈ '+(100-rounded)+'% estimated remaining';source.textContent=basis;
+}
+
+const $=id=>document.getElementById(id);
+const nf=new Intl.NumberFormat('en-US');
+const fmt=n=>nf.format(n);
+const sign=n=>n>0?'+'+fmt(n):n<0?'−'+fmt(-n):'0';
+const valid=s=>s&&Number.isSafeInteger(s.raman)&&Number.isSafeInteger(s.bass)&&s.raman>=0&&s.bass>=0&&s.raman+s.bass>0&&typeof s.stamp==='string'&&!Number.isNaN(Date.parse(s.stamp));
+const total=s=>s.raman+s.bass;
+const pct=(n,t)=>(n/t*100).toFixed(2)+'%';
+const niceTime=stamp=>{if(!stamp)return 'not available';const d=new Date(stamp);if(Number.isNaN(d.getTime()))return 'not available';return new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d);};
+let latestPublished=null;
+let snapshots=[];
+let checking=false;
+function status(s,kind='info',detail=''){
+  $('status').className='notice'+(kind==='good'?' good':kind==='error'?' error':'');
+  $('statusMessage').textContent=s;
+  if(detail){const sub=document.createElement('small');sub.textContent=detail;$('statusMessage').appendChild(sub);}
+}
+function put(id,v){$(id).textContent=v;}
+function delta(id,v){const el=$(id);el.textContent=sign(v);el.className=v>0?'positive':v<0?'negative':'neutral';}
+function render(payload){
+  snapshots=payload.history||[];
+  const s=payload.latest;
+  if(!valid(s)){
+    ['leaderName','leadNum','totalNum','ramanVotes','bassVotes','ramanPct','bassPct','ramanOld','bassOld','totalOld','ramanNew','bassNew','totalNew','ramanDelta','bassDelta','totalDelta'].forEach(x=>put(x,'—'));
+    renderEstimatedProgress(null);
+    put('reportTime','No verified vote report has been published yet');
+    put('comparisonInfo','Waiting for first verified report');
+    put('syncInfo','No verified county count has been published yet. Run the Update election data workflow in GitHub Actions.');
+    return;
+  }
+  const prev=snapshots.length>=2?snapshots[snapshots.length-2]:null;
+  const t=total(s);
+  put('reportTime','Official county report · '+niceTime(s.stamp));
+  put('leaderName',s.raman===s.bass?'Tied':s.raman>s.bass?'Nithya Raman':'Karen Bass');
+  put('leadNum',fmt(Math.abs(s.raman-s.bass)));
+  put('leadSub',(Math.abs(s.raman-s.bass)/t*100).toFixed(2)+' percentage points');
+  put('totalNum',fmt(t));
+  renderEstimatedProgress(t);
+  put('ramanVotes',fmt(s.raman));put('bassVotes',fmt(s.bass));
+  put('ramanPct',pct(s.raman,t));put('bassPct',pct(s.bass,t));
+  $('ramanBar').style.width=(s.raman/t*100).toFixed(2)+'%';
+  $('bassBar').style.width=(s.bass/t*100).toFixed(2)+'%';
+  put('ramanTag',s.raman>s.bass?'Leading':'Candidate');
+  $('ramanTag').className='tag'+(s.raman>s.bass?' lead':'');
+  put('bassTag',s.bass>s.raman?'Leading · incumbent':'Incumbent');
+  $('bassTag').className='tag'+(s.bass>s.raman?' lead':'');
+  put('ramanNew',fmt(s.raman));put('bassNew',fmt(s.bass));put('totalNew',fmt(t));
+  if(prev){
+    put('ramanOld',fmt(prev.raman));put('bassOld',fmt(prev.bass));put('totalOld',fmt(total(prev)));
+    delta('ramanDelta',s.raman-prev.raman);delta('bassDelta',s.bass-prev.bass);delta('totalDelta',t-total(prev));
+    put('ramanMiniDelta',sign(s.raman-prev.raman)+' votes since last report');
+    put('bassMiniDelta',sign(s.bass-prev.bass)+' votes since last report');
+    put('comparisonInfo','Previous: '+niceTime(prev.stamp)+' · Latest: '+niceTime(s.stamp));
+    put('changeChip','Change: '+sign(t-total(prev))+' total');
+  }else{
+    put('ramanOld','—');put('bassOld','—');put('totalOld','—');
+    put('ramanDelta','—');put('bassDelta','—');put('totalDelta','—');
+    put('ramanMiniDelta','First saved report');put('bassMiniDelta','First saved report');
+    put('comparisonInfo','First verified count saved; comparison starts with the next county update');
+    put('changeChip','First report');
+  }
+  put('changeHint',prev?'These changes are between consecutive recorded vote-count reports, not forecasts.':'No previous report has been saved yet.');
+  const tbody=$('historyBody');tbody.replaceChildren();
+  for(let i=snapshots.length-1;i>=Math.max(0,snapshots.length-70);i--){
+    const x=snapshots[i];if(!valid(x))continue;
+    const lead=x.raman===x.bass?'Tie':(x.raman>x.bass?'Raman':'Bass')+' +'+fmt(Math.abs(x.raman-x.bass));
+    const tr=document.createElement('tr');
+    [niceTime(x.stamp),fmt(x.raman),fmt(x.bass),lead,fmt(total(x))].forEach(v=>{const cell=document.createElement('td');cell.textContent=v;tr.appendChild(cell);});
+    tbody.appendChild(tr);
+  }
+  put('syncInfo','GitHub last checked LA County: '+niceTime(payload.last_checked_at)+' · Latest county bulletin: '+niceTime(s.stamp));
+  put('metaSource','Official source: LA County Registrar, November 3, 2026 election (ID 4348). Latest report '+niceTime(s.stamp)+'.');
+}
+async function refresh(initial=false){
+  if(checking)return;
+  checking=true;$('refreshBtn').disabled=true;$('refreshIcon').classList.add('spinner');put('refreshLabel','Checking…');
+  if(!initial)status('Checking the latest report published on GitHub Pages…');
+  try{
+    const response=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw Error('Published JSON request failed (HTTP '+response.status+')');
+    const payload=await response.json();
+    if(!payload||payload.election_id!==4348||!Array.isArray(payload.history)||!(payload.latest===null||valid(payload.latest)))throw Error('Invalid published results JSON');
+    if(payload.latest&&payload.history.length&&(!valid(payload.history[payload.history.length-1])||payload.history[payload.history.length-1].raman!==payload.latest.raman||payload.history[payload.history.length-1].bass!==payload.latest.bass))throw Error('Latest count does not match published history');
+    const before=latestPublished;
+    latestPublished=payload.latest;
+    render(payload);
+    if(!payload.latest){
+      status('No official vote count has been published to this site yet.','error','Run the GitHub Actions workflow, then refresh this page.');
+    }else if(initial){
+      status('Displaying the latest report saved by GitHub.','good','Official report: '+niceTime(payload.latest.stamp)+' · Last GitHub check: '+niceTime(payload.last_checked_at));
+    }else if(before&&payload.latest.stamp===before.stamp&&payload.latest.raman===before.raman&&payload.latest.bass===before.bass){
+      status('No newer vote-count report is published on GitHub yet.','good','GitHub last checked the county: '+niceTime(payload.last_checked_at));
+    }else if(before){
+      status('New county vote report published!','good','Raman: '+sign(payload.latest.raman-before.raman)+' · Bass: '+sign(payload.latest.bass-before.bass)+' · County report: '+niceTime(payload.latest.stamp));
+    }else{
+      status('Latest verified election results loaded.','good','County report: '+niceTime(payload.latest.stamp));
+    }
+  }catch(e){status('Unable to load this site’s election JSON. Previous figures are unchanged.','error',String(e.message||e));}
+  finally{$('refreshBtn').disabled=false;$('refreshIcon').classList.remove('spinner');put('refreshLabel','Refresh votes');checking=false;}
+}
+$('refreshBtn').addEventListener('click',()=>refresh(false));
+$('exportBtn').addEventListener('click',()=>{
+  const csv=['report_time,raman,bass,total,leader',...snapshots.filter(valid).map(s=>[s.stamp,s.raman,s.bass,total(s),s.raman>=s.bass?'Raman':'Bass'].join(','))].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='la-mayor-results-history.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+});
+const themeKey='la-mayor-2026-theme';
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);put('themeBtn',t==='dark'?'Light mode':'Dark mode');try{localStorage.setItem(themeKey,t);}catch(e){}}
+let stored=null;try{stored=localStorage.getItem(themeKey);}catch(e){}setTheme(stored==='light'?'light':'dark');
+$('themeBtn').addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+if(window.matchMedia&&window.matchMedia('(max-width:740px)').matches)$('historyDetails').open=false;
+// This is a one-time load of the already published GitHub file; it does not poll LA County or run a job.
+refresh(true);
+})();
+</script></body></html>

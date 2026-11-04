@@ -1,0 +1,54 @@
+name: Update election data and publish site
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '3,13,23,33,43,53 * * * *' # 10-minute cadence; schedules may be delayed
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: la-mayor-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve and validate official LA County JSON
+        run: python scripts/fetch_results.py
+      - name: Commit saved data history
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain -- data/results.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/results.json
+            git commit -m "Save LA mayor election report [skip ci]"
+            git push
+          fi
+      - name: Prepare static website
+        shell: bash
+        run: |
+          mkdir -p _site/data
+          cp index.html _site/index.html
+          cp data/results.json _site/data/results.json
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publish Pages website
+        id: deployment
+        uses: actions/deploy-pages@v4
