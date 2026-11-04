@@ -58,7 +58,7 @@ def parse(data):
     d=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
     if d.tzinfo is None:raise ValueError('County timestamp had no timezone')
     if d.date()<dt.date(2026,11,3):raise ValueError('Timestamp predates election day')
-    return {'stamp':stamp,'raman':raman,'bass':bass}
+    return {'stamp':d.isoformat(),'raman':raman,'bass':bass}
 
 def update(previous,new):
     now=NOW()
