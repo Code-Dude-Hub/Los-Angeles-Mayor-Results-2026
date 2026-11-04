@@ -2,14 +2,6 @@
 
 A mobile-friendly dark-mode results tracker for the November 3, 2026 Los Angeles mayoral election. It uses the LA County Registrar's official JSON file, not third-party election estimates.
 
-## Upload and launch
-
-1. Create a **public** GitHub repository, e.g. `la-mayor-2026` (do not initialize with extra files if you plan to upload the package with git).
-2. Upload all the files and folders from this package to the **root** of the repository, including hidden `.github/workflows/publish.yml`. In GitHub's website interface, you can use *Add file → Upload files*; verify that `.github/workflows/publish.yml` is actually present. Alternatively extract and use Git to push the folder.
-3. Go to **Settings → Pages → Build and deployment → Source → GitHub Actions**. Save.
-4. Go to **Actions → Update election data and publish site → Run workflow → Run workflow**. The first run fetches county data and deploys the site. If a run fails, open the failed step to see why. Nothing is fabricated.
-5. Your site will be at `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/` (unless using a custom domain). GitHub also displays its link under Settings → Pages.
-
 ## How Refresh works
 
 - GitHub Actions checks the county feed approximately every **10 minutes** while the workflow is enabled. GitHub does not guarantee exact timing; a scheduled run may be delayed.
