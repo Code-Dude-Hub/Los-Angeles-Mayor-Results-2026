@@ -329,24 +329,103 @@ html[data-theme=dark]{--white:#162533;--paper:#0a1521;--wash:#263644;--line:rgba
  #themeBtn,#refreshBtn{width:40px!important;height:40px!important;min-height:40px!important}
 }
 
+
+/* Compact mobile refinements — preserve the original section order. */
+.report-meta{font-size:11px;line-height:1.3;margin-top:4px;color:#deebf5;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.notice{border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:#d5e9f6!important;padding:2px 2px 8px;margin:0 0 8px;align-items:center}
+.notice .dot{width:6px;height:6px;margin-top:0}
+.notice.good .dot{background:#65cfa3}
+.notice.error .dot{background:#f1a58e}
+.notice #statusMessage{display:flex;flex-wrap:wrap;gap:1px 9px;align-items:center;font-size:11px}
+.notice small{display:inline;margin:0;font-size:10px;color:#cadde9!important}
+.count-progress{position:relative}
+.progress-heading{min-width:0}
+.progress-title{display:flex;align-items:center;gap:7px}
+.progress-heading .remaining{display:block;font-size:11px;margin-top:3px;color:var(--muted)}
+.progress-help{display:inline-block;position:relative;font-size:14px;font-weight:600;line-height:1}
+.progress-help summary{cursor:pointer;list-style:none;border:1px solid var(--line);height:20px;width:20px;border-radius:50%;display:inline-grid;place-items:center;color:var(--muted);background:var(--wash)}
+.progress-help summary::-webkit-details-marker{display:none}
+.progress-help summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.progress-popover{position:absolute;top:27px;left:-95px;width:min(295px,calc(100vw - 40px));background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 28px rgba(0,0,0,.38);padding:12px;line-height:1.5;font-size:12px;z-index:35;font-weight:400}
+.progress-track{height:5px;margin:9px 0 0}
+.history-list{display:grid;gap:8px}
+.history-entry{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--white);box-shadow:var(--shadow)}
+.history-entry-summary{list-style:none;cursor:pointer;padding:13px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto 13px;align-items:center;gap:10px}
+.history-entry-summary::-webkit-details-marker{display:none}
+.history-label{display:grid;gap:3px;min-width:0}
+.history-label strong{font-size:12px;color:var(--ink);line-height:1.3}
+.history-total-diff{font-size:12px;font-weight:760;color:var(--pos)}
+.history-chip-row{display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:flex-end;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.history-entry-chevron{border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);height:8px;width:8px}
+.history-entry[open] .history-entry-chevron{transform:rotate(225deg)}
+.history-entry-body{border-top:1px solid var(--line);padding:13px 16px}
+.history-tally-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.history-tally-name{font-size:10px;color:var(--muted);margin-bottom:4px}
+.history-tally-values{font-size:12px;font-weight:750;line-height:1.3;font-variant-numeric:tabular-nums}
+.history-lead-note{font-size:11px;margin:10px 0 0}
+.history-source-note{font-size:10px;color:var(--muted);margin:4px 0 0}
+.history-disclaimer{margin-top:10px}
+@media(max-width:740px){
+ .shell{padding-bottom:34px}
+ .top{min-height:56px;padding-top:9px;padding-bottom:9px}
+ .title-area{min-height:0!important;padding:15px 1px 7px!important;display:block}
+ .title-area h1{font-size:clamp(34px,8.9vw,41px);line-height:1.02}
+ .title-area .eyebrow{margin-bottom:6px;font-size:10px}
+ .title-area .sub{margin:5px 0 0;font-size:11px;line-height:1.3}
+ .title-area .status-chip{padding:5px 9px;margin-top:7px;font-size:10px}
+ .report-meta{margin-top:3px;font-size:10px}
+ .notice{padding:1px 2px 5px;margin:0 0 7px;font-size:10px}
+ .notice #statusMessage{font-size:10px}
+ .notice small{font-size:10px}
+ .leader-strip{padding:11px 13px;margin-bottom:8px;gap:9px 0}
+ .leader-strip .metric:first-child{padding-bottom:8px}
+ .leader-strip .metric:first-child .metric-big{font-size:26px}
+ .leader-strip .metric-big{font-size:25px}
+ .leader-strip .metric-label{font-size:10px;margin-bottom:3px}
+ .metric-details{font-size:10px;margin-top:1px}
+ .count-progress{padding:9px 13px 8px;margin-bottom:9px;border-radius:13px}
+ .progress-title{font-size:12px}
+ .progress-pct{font-size:25px}
+ .progress-heading .remaining{font-size:10px;margin-top:2px}
+ .progress-track{height:4px;margin-top:6px}
+ .history-entry-summary{padding:11px 12px;grid-template-columns:minmax(0,1fr) auto 10px;gap:7px}
+ .history-chip-row{display:grid;gap:3px;font-size:10px;text-align:right}
+ .history-tally-grid{grid-template-columns:1fr 1fr}
+ .history-tally-values{font-size:11px}
+ .history-entry-body{padding:11px 12px}
+}
+@media(max-width:360px){
+ .history-label strong{font-size:10px}.history-chip-row{font-size:10px}
+}
+
 </style></head><body><div class="shell">
 <header class="top"><div class="identity">Los Angeles <span>/</span> Election 2026</div><div class="top-right"><a class="source-link" href="https://results.lavote.gov/text-results/4348" target="_blank" rel="noopener">Official LA County results ↗</a><button class="btn secondary" id="themeBtn" type="button" title="Switch color theme">Light mode</button><div class="refresh-dock"><button class="btn" id="refreshBtn" type="button" aria-label="Refresh votes" title="Refresh votes"><svg id="refreshIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.3 9A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.7-2"/></svg><span id="refreshLabel">Refresh votes</span></button></div></div></header>
 <main>
-<div class="title-area"><div><div class="eyebrow">November 3, 2026 · General election</div><h1>Los Angeles Mayor</h1><p class="sub" id="reportTime">Waiting for the first verified LA County report</p></div><span class="status-chip"><i></i> Uncertified results</span></div>
+<div class="title-area"><div><div class="eyebrow">November 3, 2026 · General election</div><h1>Los Angeles Mayor</h1><p class="sub" id="reportTime">Waiting for the first verified LA County report</p><div class="report-meta" id="syncInfo">Updater check pending.</div></div><span class="status-chip"><i></i> Uncertified results</span></div>
 <div class="notice" id="status" role="status" aria-live="polite"><span class="dot"></span><div id="statusMessage">Loading the latest published election report…</div></div>
 <section class="leader-strip" aria-label="Mayoral race summary"><div class="metric"><div class="metric-label">Currently leading</div><div class="metric-big" id="leaderName">—</div><div class="metric-details" id="leaderSub">A lead is not an election call</div></div><div class="metric"><div class="metric-label">Vote margin</div><div class="metric-big" id="leadNum">—</div><div class="metric-details" id="leadSub">Awaiting count</div></div><div class="metric"><div class="metric-label">Total votes counted</div><div class="metric-big" id="totalNum">—</div><div class="metric-details">In this mayoral contest</div></div></section>
 <section class="count-progress" aria-label="Estimated percentage of expected mayoral votes counted">
-  <div class="progress-top"><div><div class="progress-title">Estimated votes counted</div><div class="progress-explainer">Estimate of all expected mayoral votes, not a candidate's share</div></div><div class="progress-pct" id="countProgressPct">—</div></div>
+  <div class="progress-top">
+    <div class="progress-heading">
+      <div class="progress-title">Estimated counted <details class="progress-help"><summary title="How this estimate is calculated" aria-label="How this estimate is calculated">ⓘ</summary><div class="progress-popover" id="countProgressSource">Based on an assumed final vote total, not an official county completion percentage.</div></details></div>
+      <div class="remaining" id="countProgressRemaining">Awaiting verified count</div>
+    </div>
+    <div class="progress-pct" id="countProgressPct">—</div>
+  </div>
   <div class="progress-track" id="countProgressTrack" role="progressbar" aria-label="Estimated proportion of mayoral votes counted" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Not available"><div class="progress-fill" id="countProgressFill"></div></div>
-  <div class="progress-bottom"><span class="remaining" id="countProgressRemaining">Awaiting verified count</span><span id="countProgressSource">Estimated from a 51% starting assumption at 602,896 votes; not an official percentage.</span></div>
 </section>
 <section class="two" aria-label="Candidate results">
 <article class="candidate" id="ramanCard"><div class="inside"><div class="person"><div class="photo-wrap"><img src="https://cd4.lacity.gov/wp-content/uploads/2023/10/A6013-189.jpg" alt="Nithya Raman official Los Angeles City Council portrait" loading="eager" referrerpolicy="no-referrer" onerror="this.dataset.failed='true'"></div><div><div class="candidate-name">Nithya Raman</div><div class="tag" id="ramanTag">Candidate</div></div></div><div class="vote-line"><div class="votes" id="ramanVotes">—</div><div class="pct" id="ramanPct">—</div></div><div class="unit">votes</div><div class="share-bar"><div class="share-fill" id="ramanBar" style="width:0%"></div></div><div class="candidate-delta" id="ramanMiniDelta">Awaiting official count</div><div class="candidate-photo-credit"><a target="_blank" rel="noopener" href="https://cd4.lacity.gov/press-kit/">Official LA City Council headshot ↗</a></div></div></article>
 <article class="candidate bass" id="bassCard"><div class="inside"><div class="person"><div class="photo-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Mayor_Karen_Bass_official_portrait.jpg/500px-Mayor_Karen_Bass_official_portrait.jpg" alt="Karen Bass official Los Angeles mayoral portrait" loading="eager" referrerpolicy="no-referrer" onerror="this.dataset.failed='true'"></div><div><div class="candidate-name">Karen Bass</div><div class="tag" id="bassTag">Incumbent</div></div></div><div class="vote-line"><div class="votes" id="bassVotes">—</div><div class="pct" id="bassPct">—</div></div><div class="unit">votes</div><div class="share-bar"><div class="share-fill" id="bassBar" style="width:0%"></div></div><div class="candidate-delta" id="bassMiniDelta">Awaiting official count</div><div class="candidate-photo-credit"><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Mayor_Karen_Bass_official_portrait.jpg">Official portrait ↗</a></div></div></article>
 </section>
 <section class="previous-section" aria-labelledby="previousTitle"><div class="sec-head"><div><h2 id="previousTitle">Since the last count</h2><p class="sec-desc" id="comparisonInfo">Compares consecutive official bulletins</p></div><span class="status-chip" id="changeChip">Waiting for reports</span></div><div class="table-card comparison"><table><thead><tr><th>Candidate</th><th>Previous</th><th>Latest</th><th>New votes</th></tr></thead><tbody><tr><td>Nithya Raman</td><td id="ramanOld">—</td><td id="ramanNew">—</td><td id="ramanDelta">—</td></tr><tr><td>Karen Bass</td><td id="bassOld">—</td><td id="bassNew">—</td><td id="bassDelta">—</td></tr><tr><td>Total counted</td><td id="totalOld">—</td><td id="totalNew">—</td><td id="totalDelta">—</td></tr></tbody></table></div><p class="hint" id="changeHint">Previous and latest totals are based on recorded election updates.</p></section>
-<section class="previous-section" aria-labelledby="historyTitle"><details class="history-box" id="historyDetails"><summary><div><h2 id="historyTitle">Previous updates</h2><p class="sec-desc">Earlier reported vote totals</p></div><span class="chevron" aria-hidden="true"></span></summary><div class="history-details"><div class="history-actions"><button class="btn secondary" id="exportBtn" type="button">Export history CSV</button></div><div class="table-card hist-scroll history-table"><table><thead><tr><th>Report</th><th>Raman</th><th>Bass</th><th>Lead</th><th>Total</th></tr></thead><tbody id="historyBody"></tbody></table></div></div></details></section>
-<div class="data-chip" id="syncInfo">Awaiting official LA County results.</div>
+<section class="previous-section" aria-labelledby="historyTitle"><details class="history-box" id="historyDetails" open>
+<summary><div><h2 id="historyTitle">Previous updates · Last 10</h2><p class="sec-desc">Recorded changes in both candidates' vote totals, newest first</p></div><span class="chevron" aria-hidden="true"></span></summary>
+<div class="history-details"><div class="history-actions"><button class="btn secondary" id="exportBtn" type="button">Export history CSV</button></div>
+<div class="history-list" id="historyList" aria-live="polite"></div>
+<p class="hint history-disclaimer">Official county-feed snapshots are timestamped. Recovered election-night figures are reported historical tallies; their precise county bulletin times were not independently verified. Differences compare consecutive available records, not necessarily every county release.</p>
+</div></details></section>
+
 </main><footer class="other"><div class="left"><strong style="font-size:12px">Official election results</strong><p>Vote totals: <a href="https://results.lavote.gov/text-results/4348" target="_blank" rel="noopener">Los Angeles County Registrar-Recorder/County Clerk</a>. Results remain unofficial until certified.</p><p>A candidate leading the count has not necessarily won. Estimated counting progress is based on the stated starting assumption and is not an official completion percentage.</p><p id="metaSource">Awaiting official county results.</p></div><div class="files"><div><a href="https://results.lavote.gov/text-results/4348" target="_blank" rel="noopener" class="file-label">View official LA County results</a></div></div></footer>
 </div><script>
 (()=>{
@@ -355,6 +434,10 @@ const DATA_URL='./data/results.json'; // Official candidate vote totals are from
 // Uses the selected 51%-at-602,896 reference to estimate final contest votes.
 // The source of actual candidate votes is only LA County's official election report.
 // This is NOT an official LA County percentage of votes counted.
+// Supplemental older tallies captured in contemporary reporting, NOT county archived bulletins.
+// Their asOf values are publication/reporting times; unknown county times remain unlabeled.
+// Never merge these into the authoritative county feed, or invent missing release times.
+const RECOVERED_HISTORY=Object.freeze([{"raman":243792,"bass":252154,"asOf":"2026-11-03T20:19:00-08:00","timeBasis":"reported_as_of"},{"raman":279068,"bass":289671,"asOf":"2026-11-03T21:00:00-08:00","timeBasis":"reported_as_of"},{"raman":281265,"bass":291565,"asOf":null,"timeBasis":"unverified"},{"raman":282935,"bass":292876,"asOf":"2026-11-03T21:15:00-08:00","timeBasis":"reported_as_of"},{"raman":288249,"bass":296907,"asOf":"2026-11-03T22:04:00-08:00","timeBasis":"reported_as_of"},{"raman":293524,"bass":300155,"asOf":null,"timeBasis":"unverified"},{"raman":299041,"bass":303855,"asOf":null,"timeBasis":"unverified"},{"raman":303362,"bass":305796,"asOf":null,"timeBasis":"unverified"},{"raman":305113,"bass":307140,"asOf":null,"timeBasis":"unverified"},{"raman":310170,"bass":311004,"asOf":null,"timeBasis":"unverified"},{"raman":317348,"bass":316561,"asOf":null,"timeBasis":"unverified"},{"raman":324335,"bass":322278,"asOf":null,"timeBasis":"unverified"},{"raman":338740,"bass":334762,"asOf":"2026-11-04T01:44:00-08:00","timeBasis":"reported_as_of"},{"raman":354214,"bass":346513,"asOf":"2026-11-04T02:05:00-08:00","timeBasis":"reported_as_of"}]);
 const COUNT_BASELINE=Object.freeze({votes:602896,assumedPercent:51});
 function renderEstimatedProgress(counted){
   const display=$('countProgressPct'),fill=$('countProgressFill'),track=$('countProgressTrack');
@@ -411,6 +494,76 @@ function status(s,kind='info',detail=''){
 }
 function put(id,v){$(id).textContent=v;}
 function delta(id,v){const el=$(id);el.textContent=sign(v);el.className=v>0?'positive':v<0?'negative':'neutral';}
+// Combined view: official county snapshots take priority over matching reported tallies.
+// Older recovered entries retain their independent-report status; they do not alter live vote totals.
+function historyEntries(payload){
+  const byTally=new Map();
+  for(const row of RECOVERED_HISTORY){
+    const key=row.raman+':'+row.bass;
+    byTally.set(key,{raman:row.raman,bass:row.bass,stamp:row.asOf||null,timeBasis:row.timeBasis,origin:'reported'});
+  }
+  for(const row of [...(payload.history||[]),payload.latest]){
+    if(!valid(row))continue;
+    byTally.set(row.raman+':'+row.bass,{raman:row.raman,bass:row.bass,stamp:row.stamp,timeBasis:'county_feed_timestamp',origin:'county'});
+  }
+  const latest=payload.latest;
+  return Array.from(byTally.values()).filter(row=>!latest||total(row)<=total(latest))
+    .sort((a,b)=>total(a)-total(b)||a.raman-b.raman);
+}
+function historyLabel(row){
+  if(row.origin==='county')return niceTime(row.stamp)+' · County feed';
+  if(row.stamp)return 'Reported as of '+niceTime(row.stamp)+' · Earlier tally';
+  return 'Earlier reported tally · County time unknown';
+}
+function renderHistory(payload){
+  const list=$('historyList');list.replaceChildren();
+  const entries=historyEntries(payload);
+  window.__visibleHistory=entries;
+  const pairs=[];
+  for(let i=1;i<entries.length;i++){
+    const now=entries[i],before=entries[i-1];
+    if(now.raman===before.raman&&now.bass===before.bass)continue;
+    pairs.push({now,before});
+  }
+  const recent=pairs.slice(-10).reverse();
+  if(!recent.length){
+    const empty=document.createElement('p');empty.className='hint';empty.textContent='No prior recorded change is available yet.';list.appendChild(empty);return;
+  }
+  for(let i=0;i<recent.length;i++){
+    const {now,before}=recent[i];
+    const row=document.createElement('details');row.className='history-entry';
+    if(i===0)row.open=true;
+    const sum=document.createElement('summary');sum.className='history-entry-summary';
+    const label=document.createElement('div');label.className='history-label';
+    const name=document.createElement('strong');name.textContent=historyLabel(now);
+    const totalDiff=document.createElement('span');totalDiff.className='history-total-diff';totalDiff.textContent=sign(total(now)-total(before))+' counted';
+    label.append(name,totalDiff);
+    const chips=document.createElement('div');chips.className='history-chip-row';
+    const rc=document.createElement('span');rc.textContent='Raman '+sign(now.raman-before.raman);
+    const bc=document.createElement('span');bc.textContent='Bass '+sign(now.bass-before.bass);
+    chips.append(rc,bc);
+    const arrow=document.createElement('span');arrow.className='history-entry-chevron';arrow.setAttribute('aria-hidden','true');
+    sum.append(label,chips,arrow);
+    row.appendChild(sum);
+    const body=document.createElement('div');body.className='history-entry-body';
+    const grid=document.createElement('div');grid.className='history-tally-grid';
+    const add=(title,oldCount,newCount)=>{
+      const item=document.createElement('div');item.className='history-tally';
+      const h=document.createElement('div');h.className='history-tally-name';h.textContent=title;
+      const values=document.createElement('div');values.className='history-tally-values';values.textContent=fmt(oldCount)+' → '+fmt(newCount);
+      item.append(h,values);grid.appendChild(item);
+    };
+    add('Nithya Raman',before.raman,now.raman);
+    add('Karen Bass',before.bass,now.bass);
+    add('Total counted',total(before),total(now));
+    const leader=document.createElement('p');leader.className='history-lead-note';
+    const who=now.raman===now.bass?'Tie':now.raman>now.bass?'Raman':'Bass';
+    leader.textContent='After this tally: '+who+(who==='Tie'?'':' leading by '+fmt(Math.abs(now.raman-now.bass))+' votes');
+    const provenance=document.createElement('p');provenance.className='history-source-note';
+    provenance.textContent=now.origin==='county'?'Timestamp from the saved LA County election feed.':'Recovered from election-night reporting; not a verified county feed timestamp.';
+    body.append(grid,leader,provenance);row.appendChild(body);list.appendChild(row);
+  }
+}
 function render(payload){
   snapshots=payload.history||[];
   const s=payload.latest;
@@ -456,21 +609,14 @@ function render(payload){
     put('changeChip','First report');
   }
   put('changeHint',prev?'These changes are between consecutive recorded vote-count reports, not forecasts.':'No earlier official report has been saved yet; the next distinct county update will populate this comparison.');
-  const tbody=$('historyBody');tbody.replaceChildren();
-  for(let i=snapshots.length-1;i>=Math.max(0,snapshots.length-70);i--){
-    const x=snapshots[i];if(!valid(x))continue;
-    const lead=x.raman===x.bass?'Tie':(x.raman>x.bass?'Raman':'Bass')+' +'+fmt(Math.abs(x.raman-x.bass));
-    const tr=document.createElement('tr');
-    [niceTime(x.stamp),fmt(x.raman),fmt(x.bass),lead,fmt(total(x))].forEach(v=>{const cell=document.createElement('td');cell.textContent=v;tr.appendChild(cell);});
-    tbody.appendChild(tr);
-  }
-  put('syncInfo','Last checked LA County: '+niceTime(payload.last_checked_at)+' · Latest county bulletin: '+niceTime(s.stamp));
+  renderHistory(payload);
+  put('syncInfo','Updater last checked LA County: '+niceTime(payload.last_checked_at));
   put('metaSource','Official source: LA County Registrar, November 3, 2026 election (ID 4348). Latest report '+niceTime(s.stamp)+'.');
 }
 async function refresh(initial=false){
   if(checking)return;
   checking=true;$('refreshBtn').disabled=true;$('refreshIcon').classList.add('spinner');put('refreshLabel','Checking…');
-  if(!initial)status('Checking for an updated LA County report…');
+  if(!initial)status('Checking the saved county-report file…');
   try{
     const response=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
     if(!response.ok)throw Error('Election results request failed (HTTP '+response.status+')');
@@ -483,27 +629,30 @@ async function refresh(initial=false){
     if(!payload.latest){
       status('No official LA County vote count is available yet.','error','Please check again after the next county report.');
     }else if(initial){
-      status('Latest LA County report loaded.','good','Official report: '+niceTime(payload.latest.stamp)+' · Last checked: '+niceTime(payload.last_checked_at));
+      status('County results loaded.','good','Updater checked: '+niceTime(payload.last_checked_at));
     }else if(before&&payload.latest.stamp===before.stamp&&payload.latest.raman===before.raman&&payload.latest.bass===before.bass){
-      status('No newer LA County vote report available.','good','Last checked: '+niceTime(payload.last_checked_at));
+      status('No newer saved county report.','good','Updater checked: '+niceTime(payload.last_checked_at));
     }else if(before){
-      status('Updated LA County vote totals available!','good','Raman: '+sign(payload.latest.raman-before.raman)+' · Bass: '+sign(payload.latest.bass-before.bass)+' · County report: '+niceTime(payload.latest.stamp));
+      status('New saved county report loaded!','good','Raman: '+sign(payload.latest.raman-before.raman)+' · Bass: '+sign(payload.latest.bass-before.bass)+' · County report: '+niceTime(payload.latest.stamp));
     }else{
-      status('Latest LA County results loaded.','good','County report: '+niceTime(payload.latest.stamp));
+      status('Saved county results loaded.','good','County report: '+niceTime(payload.latest.stamp));
     }
-  }catch(e){status('Unable to retrieve updated election totals. Previous figures are unchanged.','error',String(e.message||e));}
+  }catch(e){status('Unable to load the saved election file. Current figures unchanged.','error',String(e.message||e));}
   finally{$('refreshBtn').disabled=false;$('refreshIcon').classList.remove('spinner');put('refreshLabel','Refresh votes');checking=false;}
 }
 $('refreshBtn').addEventListener('click',()=>refresh(false));
 $('exportBtn').addEventListener('click',()=>{
-  const csv=['report_time,raman,bass,total,leader',...snapshots.filter(valid).map(s=>[s.stamp,s.raman,s.bass,total(s),s.raman>=s.bass?'Raman':'Bass'].join(','))].join('\r\n');
+  const rows=historyEntries({history:snapshots,latest:latestPublished});
+  const csv=['reported_as_of,raman,bass,total,leader,source_type',...rows.map(s=>[
+    s.stamp||'',s.raman,s.bass,total(s),s.raman===s.bass?'Tie':s.raman>s.bass?'Raman':'Bass',s.origin==='county'?'saved_county_feed':'independently_reported'
+  ].join(','))].join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='la-mayor-results-history.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);
 });
 const themeKey='la-mayor-2026-theme';
 function setTheme(t){document.documentElement.setAttribute('data-theme',t);put('themeBtn',t==='dark'?'Light mode':'Dark mode');try{localStorage.setItem(themeKey,t);}catch(e){}}
 let stored=null;try{stored=localStorage.getItem(themeKey);}catch(e){}setTheme(stored==='light'?'light':'dark');
 $('themeBtn').addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-if(window.matchMedia&&window.matchMedia('(max-width:740px)').matches)$('historyDetails').open=false;
+
 // Load the current reporting snapshot once when the page opens.
 refresh(true);
 })();
