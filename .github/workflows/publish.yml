@@ -1,4 +1,5 @@
 name: Update election data and publish site
+
 on:
   workflow_dispatch:
   schedule:
@@ -9,17 +10,19 @@ on:
     paths:
       - 'index.html'
       - 'assets/**'
-      - '.github/workflows/publish.yml'
-      - 'scripts/fetch_results.py'
+
 permissions:
   contents: write
   pages: write
   id-token: write
+
+# Serialize runs. Scheduled checks never request a Pages deployment.
 concurrency:
   group: la-mayor-pages
   cancel-in-progress: false
+
 jobs:
-  publish:
+  update_and_publish:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -29,13 +32,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+
+      # The 10-minute schedule updates the repository's JSON, not the Pages site.
+      # The website reads the current JSON directly from the repository.
       - name: Set up Python
+        if: github.event_name != 'push'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Retrieve and validate official LA County JSON
+        if: github.event_name != 'push'
         run: python scripts/fetch_results.py
-      - name: Commit saved data history
+
+      - name: Commit saved vote data and last-checked time
+        if: github.event_name != 'push'
         shell: bash
         run: |
           if [[ -n "$(git status --porcelain -- data/results.json)" ]]; then
@@ -45,19 +56,29 @@ jobs:
             git commit -m "Save LA mayor election report [skip ci]"
             git push
           fi
+
+      # A Pages deployment is needed only when HTML/assets change, or when
+      # manually requested. No Pages deploy on 10-minute scheduled checks.
       - name: Prepare static website
+        if: github.event_name != 'schedule'
         shell: bash
         run: |
           mkdir -p _site/data _site/assets
           cp index.html _site/index.html
           cp data/results.json _site/data/results.json
           if [[ -d assets ]]; then cp -R assets/. _site/assets/; fi
+
       - name: Configure GitHub Pages
+        if: github.event_name != 'schedule'
         uses: actions/configure-pages@v5
+
       - name: Upload Pages artifact
+        if: github.event_name != 'schedule'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+
       - name: Publish Pages website
+        if: github.event_name != 'schedule'
         id: deployment
         uses: actions/deploy-pages@v4
