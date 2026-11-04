@@ -56,11 +56,13 @@ def parse(data):
     if raman+bass==0:raise ValueError('County has not published votes for this contest yet')
     stamp=data.get('Timestamp')
     if not isinstance(stamp,str):raise ValueError('Missing official timestamp')
-    d=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
+    d = dt.datetime.fromisoformat(stamp.replace('Z', '+00:00'))
     if d.tzinfo is None:
-    d = d.replace(tzinfo=ZoneInfo("America/Los_Angeles"))
-    if d.date()<dt.date(2026,11,3):raise ValueError('Timestamp predates election day')
-    return {'stamp':d.isoformat(),'raman':raman,'bass':bass}
+        d = d.replace(tzinfo=ZoneInfo("America/Los_Angeles"))
+    if d.date() < dt.date(2026, 11, 3):
+        raise ValueError('Timestamp predates election day')
+    return {'stamp': d.isoformat(), 'raman': raman, 'bass': bass}
+
 
 def update(previous,new):
     now=NOW()
