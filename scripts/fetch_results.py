@@ -9,6 +9,7 @@ import json
 import pathlib
 import time
 import urllib.request
+from zoneinfo import ZoneInfo
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 FILE=ROOT/'data'/'results.json'
@@ -56,7 +57,8 @@ def parse(data):
     stamp=data.get('Timestamp')
     if not isinstance(stamp,str):raise ValueError('Missing official timestamp')
     d=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
-    if d.tzinfo is None:raise ValueError('County timestamp had no timezone')
+    if d.tzinfo is None:
+    d = d.replace(tzinfo=ZoneInfo("America/Los_Angeles"))
     if d.date()<dt.date(2026,11,3):raise ValueError('Timestamp predates election day')
     return {'stamp':d.isoformat(),'raman':raman,'bass':bass}
 
