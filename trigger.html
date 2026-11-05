@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101923">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Private mobile remote control for the Los Angeles 2026 mayoral election data updater.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Election Update • Mobile Control</title>
+<style>
+:root{color-scheme:dark;--bg:#0b141e;--surface:#15232f;--surface2:#1c2d39;--edge:#314450;--txt:#f3f7fa;--dim:#a2b5c0;--green:#72d7a4;--amber:#f2c676;--red:#f3a39a;--glass:rgba(27,43,54,.82);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}html{min-height:100%}body{margin:0;min-height:100dvh;background:radial-gradient(ellipse at 50% -14%,#2d4859 0%,#121e2b 37%,var(--bg) 72%);color:var(--txt);line-height:1.42}button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}button:disabled{cursor:wait;opacity:.55}a{color:inherit}button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.page{max-width:530px;margin:auto;padding:calc(20px + env(safe-area-inset-top)) 18px calc(28px + env(safe-area-inset-bottom))}.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-weight:800;font-size:11px;color:var(--dim)}.head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:25px}.brand{display:flex;gap:11px;align-items:center}.logo{display:grid;place-items:center;width:40px;height:40px;background:#263947;border:1px solid #466073;border-radius:12px;color:var(--amber);font-size:21px}.private{font-size:10px;letter-spacing:.08em;color:var(--dim);padding:8px 11px;border-radius:20px;border:1px solid var(--edge);white-space:nowrap}
+h1{font-size:clamp(35px,9vw,48px);letter-spacing:-.06em;line-height:1.05;margin:0 0 10px;font-weight:850}.lead{margin:0 0 22px;color:var(--dim);font-size:14px;max-width:400px}.panel{border:1px solid var(--edge);background:var(--glass);border-radius:20px;padding:19px;margin-bottom:13px;box-shadow:0 14px 35px rgba(0,0,0,.13)}.panel-title{font-size:14px;font-weight:800;letter-spacing:-.01em}.overline{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--dim);font-weight:800}.flex{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--dim)}.small{font-size:12px}.tiny{font-size:11px}.nowrap{white-space:nowrap}
+.status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--dim);font-weight:700}.dot{width:9px;height:9px;border-radius:50%;background:#718797;flex:none}.status.ok .dot{background:var(--green);box-shadow:0 0 14px #72d7a44b}.status.run .dot{background:var(--amber);animation:pulse 1s infinite}.status.bad .dot{background:var(--red)}@keyframes pulse{50%{opacity:.35}}
+.big-number{font-variant-numeric:tabular-nums;font-weight:850;letter-spacing:-.055em;font-size:clamp(37px,9vw,53px);line-height:1.15;margin:10px 0 5px}.counts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.count{padding:11px;background:#ffffff08;border:1px solid #ffffff0b;border-radius:12px}.count strong{display:block;font-size:19px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}.count span{color:var(--dim);font-size:11px}.meta{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:11px;color:var(--dim);margin-top:15px;padding-top:11px;border-top:1px solid var(--edge)}
+.action{padding:20px 18px}.action button.primary{display:flex;gap:11px;justify-content:center;align-items:center;width:100%;min-height:80px;border:0;border-radius:16px;background:linear-gradient(155deg,#f7e0af,#eebd72);color:#26303a;font-size:21px;font-weight:850;box-shadow:0 8px 24px #edb86921;touch-action:manipulation}.action button.primary:active{transform:scale(.985)}.action button.primary:disabled{opacity:.45}.icon-btn{width:27px;height:27px}.hint{font-size:11px;color:var(--dim);text-align:center;margin:12px 0 0}.progress{display:none;margin-top:18px}.progress.visible{display:block}.track{height:4px;background:var(--surface2);border-radius:3px;overflow:hidden;margin:10px 0}.track i{display:block;width:30%;height:100%;background:var(--amber);animation:loading 1.4s infinite ease-in-out;border-radius:3px}@keyframes loading{from{transform:translateX(-110%)}to{transform:translateX(390%)}}.step{font-size:13px;font-weight:750}.run-link{font-size:12px;color:var(--amber);display:none;margin-top:8px;text-decoration:underline;text-underline-offset:3px}
+.label{display:block;font-size:12px;font-weight:750;color:#d3dfe6;margin:15px 0 7px}.field{width:100%;border:1px solid #526774;background:#0e1b27;border-radius:11px;color:var(--txt);padding:14px;font-size:15px;min-height:48px;outline:none}.field::placeholder{color:#738895}.field:focus{border-color:var(--amber)}.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.secondary{background:var(--surface2);border:1px solid #476070;color:var(--txt);border-radius:11px;padding:12px 16px;font-weight:760;font-size:13px;min-height:44px}.secondary.fill{flex:1}.plain{background:transparent;border:0;color:var(--dim);padding:7px 1px;font-size:12px;text-decoration:underline;text-underline-offset:3px}.check{display:flex;align-items:start;gap:10px;font-size:13px;color:var(--txt);margin:12px 0;cursor:pointer}.check input{accent-color:#cfb17d;width:18px;height:18px;margin:1px 0 0;flex:none}.tag{color:var(--green);font-size:11px;border:1px solid #4d7965;border-radius:100px;padding:5px 9px}.help{font-size:11px;color:var(--dim);margin-top:9px}.alert{min-height:0;font-size:12px;color:var(--amber);margin-top:12px;white-space:pre-line}.alert.error{color:var(--red)}.alert.good{color:var(--green)}.hidden{display:none!important}.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:23px 3px 5px}.foot a{font-size:12px;color:var(--dim);text-decoration:none;border-bottom:1px solid #708391;padding-bottom:1px}details{color:var(--dim);font-size:12px;margin-top:16px}summary{cursor:pointer;font-weight:720;color:var(--txt)}details p{margin:8px 0 0}.caption{font-size:11px;color:var(--dim);margin-top:12px}.sep{border:0;border-top:1px solid var(--edge);margin:17px 0}
+@media(min-width:600px){.page{padding-top:46px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="brand"><div class="logo" aria-hidden="true">↻</div><div><div class="eyebrow">Los Angeles · 2026</div><div style="font-weight:800;font-size:14px">Election control</div></div></div>
+    <span class="private">TOKEN REQUIRED</span>
+  </header>
+
+  <h1>Update the<br>vote count.</h1>
+  <p class="lead">Run your existing GitHub updater from your phone. The website still gets its vote totals from LA County.</p>
+
+  <section class="panel" aria-label="Current vote data">
+    <div class="flex"><div class="overline">Current mayoral votes</div><div id="feedState" class="status"><span class="dot"></span><span>Loading feed</span></div></div>
+    <div class="big-number" id="voteTotal">—</div>
+    <div class="counts"><div class="count"><strong id="raman">—</strong><span>Nithya Raman</span></div><div class="count"><strong id="bass">—</strong><span>Karen Bass</span></div></div>
+    <div class="meta"><span id="countyTime">County report: —</span><span id="checkTime">Last checked: —</span></div>
+  </section>
+
+  <section class="panel action" aria-label="Trigger election update">
+    <button type="button" class="primary" id="runBtn" disabled><span aria-hidden="true" style="font-size:31px">↻</span><span id="runLabel">Connect to update</span></button>
+    <p class="hint">Checks the official source, then updates <code>results.json</code> if needed.</p>
+    <div class="progress" id="progress" aria-live="polite" role="status">
+      <div class="track" id="runningTrack"><i></i></div>
+      <div class="step" id="stepText">—</div>
+      <p class="small muted" id="stepDetail" style="margin:4px 0 0"></p>
+      <a class="run-link" id="runLink" href="https://github.com/Code-Dude-Hub/Los-Angeles-Mayor-Results-2026/actions/workflows/publish.yml" target="_blank" rel="noopener noreferrer">View workflow run</a>
+    </div>
+  </section>
+
+  <section class="panel" id="connectCard" aria-label="Connect GitHub token">
+    <div class="flex"><strong class="panel-title">Connect once</strong><span class="overline">GitHub</span></div>
+    <p class="small muted" style="margin:9px 0 2px">Paste a fine-grained GitHub token with <strong>Actions: Read and write</strong>, limited to this repository. Never put your token into the public HTML file.</p>
+    <label class="label" for="token">GitHub access token</label>
+    <input class="field" id="token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+    <label class="check"><input type="checkbox" id="remember"><span>Remember access on this phone <span class="muted">(encrypted)</span></span></label>
+    <div id="passFields" class="hidden"><label class="label" for="newPass">Unlock password (8 characters minimum)</label><input class="field" id="newPass" type="password" autocomplete="new-password" placeholder="Create a device-only password"><p class="help">The browser saves only encrypted token data. You'll enter this password when reopening the page.</p></div>
+    <div class="btnrow"><button class="secondary fill" id="connectBtn" type="button">Connect GitHub</button></div>
+    <div class="alert" id="connectMessage" aria-live="polite"></div>
+    <details><summary>How to get the token</summary><p>In GitHub, create a fine-grained personal access token. Select only <b>Los-Angeles-Mayor-Results-2026</b> and set repository permission <b>Actions → Read and write</b>. Then paste it above.</p><p><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Open token setup on GitHub ↗</a></p></details>
+  </section>
+
+  <section class="panel hidden" id="unlockCard" aria-label="Unlock saved credential">
+    <div class="flex"><strong class="panel-title">Unlock this phone</strong><span class="tag">Encrypted</span></div>
+    <p class="small muted">Your GitHub token is stored encrypted on this device. Enter the password you created.</p>
+    <label class="label" for="unlockPass">Unlock password</label>
+    <input class="field" id="unlockPass" type="password" autocomplete="current-password" placeholder="Unlock password">
+    <div class="btnrow"><button class="secondary fill" type="button" id="unlockBtn">Unlock controller</button><button class="plain" type="button" id="forgetBtn">Forget access</button></div>
+    <div class="alert" id="unlockMessage" aria-live="polite"></div>
+  </section>
+
+  <section class="panel hidden" id="readyCard" aria-label="Connected status">
+    <div class="flex"><div><strong class="panel-title">GitHub connected</strong><div class="small muted">Workflow: publish.yml · Branch: main</div></div><span class="tag">READY</span></div>
+    <div class="btnrow"><button class="plain" type="button" id="lockBtn">Disconnect for now</button><button class="plain" type="button" id="clearBtn">Forget saved access</button></div>
+  </section>
+
+  <div class="foot"><a href="https://code-dude-hub.github.io/Los-Angeles-Mayor-Results-2026/" target="_blank" rel="noopener noreferrer">Open results website ↗</a><a href="https://github.com/Code-Dude-Hub/Los-Angeles-Mayor-Results-2026/actions/workflows/publish.yml" target="_blank" rel="noopener noreferrer">View GitHub Actions ↗</a></div>
+  <div class="caption">Private controls run only in your browser. This page has no tracking scripts or third-party libraries. Never share a screenshot showing your token.</div>
+</div>
+<script>
+(()=>{
+'use strict';
+const REPO='Code-Dude-Hub/Los-Angeles-Mayor-Results-2026';
+const API='https://api.github.com/repos/'+REPO;
+const WORKFLOW='publish.yml';
+const RAW='https://raw.githubusercontent.com/'+REPO+'/main/data/results.json';
+const VAULT_KEY='la-election-remote-v1';
+const $=id=>document.getElementById(id);
+const number=new Intl.NumberFormat('en-US');
+const dt=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+let authToken=null,working=false,currentFeed=null;
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const when=value=>{if(!value)return '—';const d=new Date(value);return Number.isNaN(+d)?'—':dt.format(d)+' PT';};
+function message(id,value,kind=''){const x=$(id);x.textContent=value;x.className='alert'+(kind?' '+kind:'');}
+function flag(id,txt,state=''){const e=$(id);e.className='status'+(state?' '+state:'');e.querySelector('span:last-child').textContent=txt;}
+function setProgress(head,detail='',done=false){$('progress').classList.add('visible');$('stepText').textContent=head;$('stepDetail').textContent=detail;$('runningTrack').style.display=done?'none':'block';}
+function ready(){const connected=!!authToken;$('runBtn').disabled=!connected||working;$('runLabel').textContent=working?'Updating…':connected?'UPDATE NOW':'Connect to update';$('connectCard').classList.toggle('hidden',connected||!!(!connected&&hasVault()));$('unlockCard').classList.toggle('hidden',connected||!hasVault());$('readyCard').classList.toggle('hidden',!connected);}
+function hasVault(){try{return !!localStorage.getItem(VAULT_KEY)}catch{return false}}
+function bytesToB64(bytes){let s='';for(const b of bytes)s+=String.fromCharCode(b);return btoa(s)}
+function b64ToBytes(s){return Uint8Array.from(atob(s),c=>c.charCodeAt(0));}
+async function deriveKey(pass,salt){const seed=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:210000,hash:'SHA-256'},seed,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function encryptToken(token,pass){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));const key=await deriveKey(pass,salt);const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(token));return JSON.stringify({v:1,salt:bytesToB64(salt),iv:bytesToB64(iv),payload:bytesToB64(new Uint8Array(encrypted))});}
+async function decryptToken(value,pass){const o=JSON.parse(value);if(o.v!==1)throw Error('Unknown vault version');const key=await deriveKey(pass,b64ToBytes(o.salt));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64ToBytes(o.iv)},key,b64ToBytes(o.payload));return new TextDecoder().decode(pt);}
+async function github(url,options={}){if(!authToken)throw Error('Connect GitHub first.');const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),15000);try{const r=await fetch(url,{...options,signal:ctrl.signal,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+authToken,...options.headers},cache:'no-store'});if(!r.ok){let detail='';try{const j=await r.json();detail=j?.message||''}catch{}const label=r.status===401?'Token rejected or expired':r.status===403?'Permission denied or API rate limit':r.status===404?'Workflow unavailable or repository access denied':r.status===422?'Workflow cannot be dispatched':'GitHub request failed';throw Error(label+' (HTTP '+r.status+')'+(detail?': '+detail:''));}return r;}catch(e){if(e.name==='AbortError')throw Error('GitHub request timed out');throw e;}finally{clearTimeout(timer)}}
+async function loadFeed(){try{const r=await fetch(RAW+'?cache='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();if(d.election_id!==4348||!d.latest||!Number.isInteger(d.latest.raman)||!Number.isInteger(d.latest.bass))throw Error('Invalid election data');currentFeed=d;$('raman').textContent=number.format(d.latest.raman);$('bass').textContent=number.format(d.latest.bass);$('voteTotal').textContent=number.format(d.latest.raman+d.latest.bass);$('countyTime').textContent='County report: '+when(d.latest.stamp);$('checkTime').textContent='Last checked: '+when(d.last_checked_at);flag('feedState','Data loaded','ok');return d;}catch(e){flag('feedState','Feed unavailable','bad');if(!currentFeed){$('voteTotal').textContent='—';$('checkTime').textContent='Unable to read JSON';}return null;}}
+async function connect(){message('connectMessage','');const candidate=$('token').value.trim(),save=$('remember').checked,pass=$('newPass').value;if(!candidate){message('connectMessage','Paste your GitHub token first.','error');return;}if(save&&pass.length<8){message('connectMessage','Choose an unlock password of at least 8 characters.','error');return;}if(save&&(!crypto.subtle||!window.isSecureContext)){message('connectMessage','Encrypted storage requires HTTPS. Open this app on your GitHub Pages address.','error');return;}
+ $('connectBtn').disabled=true;authToken=candidate;try{await github(API+'/actions/workflows/'+WORKFLOW);if(save){const vault=await encryptToken(candidate,pass);localStorage.setItem(VAULT_KEY,vault);}else{try{localStorage.removeItem(VAULT_KEY)}catch{}} $('token').value='';$('newPass').value='';message('connectMessage','');ready();setProgress('Ready to run','Tap UPDATE NOW to check the county source.',true);}catch(e){authToken=null;message('connectMessage',e.message||String(e),'error');}finally{$('connectBtn').disabled=false;ready();}}
+async function unlock(){message('unlockMessage','');const pass=$('unlockPass').value;if(!pass){message('unlockMessage','Enter your unlock password.','error');return;}$('unlockBtn').disabled=true;try{authToken=await decryptToken(localStorage.getItem(VAULT_KEY),pass);await github(API+'/actions/workflows/'+WORKFLOW);$('unlockPass').value='';ready();setProgress('Ready to run','Tap UPDATE NOW to check the county source.',true);}catch(e){authToken=null;message('unlockMessage','Could not unlock or validate the saved token. '+(e.name==='OperationError'?'Check the unlock password.':e.message),'error');}finally{$('unlockBtn').disabled=false;ready();}}
+async function runList(){const r=await github(API+'/actions/workflows/'+WORKFLOW+'/runs?event=workflow_dispatch&branch=main&per_page=20');return (await r.json()).workflow_runs||[];}
+async function readRun(id){const r=await github(API+'/actions/runs/'+id);return r.json();}
+async function findRun(previousIds,start){const all=await runList();return all.find(x=>!previousIds.has(x.id)&&Date.parse(x.created_at)>=start-30000)||null;}
+async function runUpdate(){if(working||!authToken)return;working=true;ready();$('runLink').style.display='none';setProgress('Reading current results…','Comparing the next published file with the starting count.');const old=await loadFeed();const beforeStamp=old?.last_checked_at||null;let previousIds=new Set(),runId=null,htmlUrl=null;const started=Date.now();try{
+ try{previousIds=new Set((await runList()).map(x=>x.id))}catch{}setProgress('Sending GitHub trigger…','Requesting a new run of publish.yml on main.');
+ const r=await github(API+'/actions/workflows/'+WORKFLOW+'/dispatches',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});
+ // GitHub returns 200 with run ID on current API versions; earlier versions return 204.
+ if(r.status!==204){try{const data=await r.json();runId=data.workflow_run_id||data.id||null;htmlUrl=data.html_url||null;}catch{}}
+ setProgress('GitHub accepted the request','Locating the workflow run.');$('runLink').style.display='block';if(htmlUrl)$('runLink').href=htmlUrl;
+ let result=null;for(let attempt=0;attempt<55;attempt++){
+   if(!runId){try{const run=await findRun(previousIds,started);if(run){runId=run.id;htmlUrl=run.html_url;}}catch{}}
+   if(runId){if(htmlUrl)$('runLink').href=htmlUrl;else $('runLink').href='https://github.com/'+REPO+'/actions/runs/'+runId;
+     try{result=await readRun(runId);}catch(e){if(attempt>3)throw e;}
+     if(result){if(result.status==='completed')break;const label=result.status==='in_progress'?'Updating county data and publishing…':result.status==='queued'?'Queued on GitHub…':'Workflow status: '+result.status;setProgress(label,'Waiting for GitHub Actions to finish.');}
+   }else{setProgress('GitHub accepted the request','Waiting for the new workflow to appear in Actions…');}
+   await wait(5000);
+ }
+ if(!result||result.status!=='completed'){setProgress('Trigger sent; status still pending','Open the workflow link to see the latest status. Automatic tracking timed out.',true);return;}
+ if(result.conclusion!=='success'){setProgress('GitHub workflow '+(result.conclusion||'failed'),'The updater did not finish successfully. Open the workflow link for details.',true);return;}
+ setProgress('Workflow completed','Checking whether a newer county total was published.');let newest=null;for(let i=0;i<6;i++){newest=await loadFeed();if(newest?.last_checked_at&&newest.last_checked_at!==beforeStamp)break;await wait(2500)}
+ if(!newest){setProgress('Run succeeded; feed temporarily unavailable','The workflow finished, but the live JSON could not be reloaded.',true);return;}
+ const oldN=old?.latest?.raman+old?.latest?.bass,newN=newest.latest.raman+newest.latest.bass;
+ if(old&&Number.isFinite(oldN)&&newN>oldN)setProgress('New vote totals published!','+'+number.format(newN-oldN)+' mayoral votes since your last visible count.',true);
+ else if(old&&Number.isFinite(oldN)&&newN===oldN){const checked=!!(newest.last_checked_at&&newest.last_checked_at!==beforeStamp);setProgress(checked?'Checked successfully — no new votes':'Run succeeded — check time unchanged',checked?'Your JSON was checked; LA County has not supplied a higher mayoral vote total.':'The run succeeded, but the JSON check timestamp did not advance. Verify the workflow logs.',true);}
+ else setProgress('Update complete','Latest vote totals are shown above.',true);
+ }catch(e){setProgress('Could not finish the update',e.message||String(e),true);}finally{working=false;ready()}}
+ $('remember').addEventListener('change',()=>{$('passFields').classList.toggle('hidden',!$('remember').checked)});
+ $('connectBtn').addEventListener('click',connect);$('unlockBtn').addEventListener('click',unlock);$('runBtn').addEventListener('click',runUpdate);
+ $('newPass').addEventListener('keydown',e=>{if(e.key==='Enter')connect()});$('unlockPass').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+ $('lockBtn').addEventListener('click',()=>{authToken=null;ready();setProgress('Controller locked','Unlock or reconnect to trigger another update.',true)});
+ function forget(){authToken=null;try{localStorage.removeItem(VAULT_KEY)}catch{}ready();$('token').value='';$('newPass').value='';$('unlockPass').value='';setProgress('Access removed from this device','Paste a new token to reconnect.',true);}
+ $('forgetBtn').addEventListener('click',forget);$('clearBtn').addEventListener('click',forget);
+ ready();loadFeed();
+})();
+</script>
+</body>
+</html>
