@@ -2,8 +2,41 @@ name: Update election data and publish site
 
 on:
   workflow_dispatch:
+    inputs:
+      operation:
+        description: "Update votes, or change automatic polling schedule"
+        type: choice
+        required: true
+        default: update
+        options:
+          - update
+          - schedule
+      schedule_key:
+        description: "Schedule to change"
+        type: choice
+        required: false
+        default: all
+        options:
+          - all
+          - every_6_hours
+          - morning_0910
+          - evening_1705
+      schedule_enabled:
+        description: "Enable or pause the selected schedule"
+        type: choice
+        required: false
+        default: 'true'
+        options:
+          - 'true'
+          - 'false'
   schedule:
-    - cron: '3,13,23,33,43,53 * * * *'
+    # All times are local Los Angeles time, including daylight saving time.
+    - cron: '10 0,6,12,18 * * *'
+      timezone: 'America/Los_Angeles'
+    - cron: '10 9 * * *'
+      timezone: 'America/Los_Angeles'
+    - cron: '5 17 * * *'
+      timezone: 'America/Los_Angeles'
   push:
     branches:
       - main
@@ -18,7 +51,6 @@ permissions:
   pages: write
   id-token: write
 
-# Serialize runs. Scheduled checks never request a Pages deployment.
 concurrency:
   group: la-mayor-pages
   cancel-in-progress: false
@@ -35,52 +67,121 @@ jobs:
         with:
           persist-credentials: true
 
-      # The 10-minute schedule updates the repository's JSON, not the Pages site.
-      # The website reads the current JSON directly from the repository.
+      - name: Decide whether to update county data or save schedule
+        id: plan
+        shell: bash
+        env:
+          EVENT_KIND: ${{ github.event_name }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+          OPERATION: ${{ inputs.operation }}
+          SCHEDULE_KEY: ${{ inputs.schedule_key }}
+          SCHEDULE_ENABLED: ${{ inputs.schedule_enabled }}
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path('data/schedule.json')
+          default = {
+              'schema_version': 1,
+              'timezone': 'America/Los_Angeles',
+              'every_6_hours': True,
+              'morning_0910': True,
+              'evening_1705': True,
+              'updated_at': None,
+          }
+          state = dict(default)
+          if path.exists():
+              data = json.loads(path.read_text(encoding='utf-8'))
+              state.update({k: data[k] for k in default if k in data})
+          keys = ('every_6_hours', 'morning_0910', 'evening_1705')
+          event = os.environ.get('EVENT_KIND')
+          op = os.environ.get('OPERATION')
+          do_fetch = False
+
+          if event == 'workflow_dispatch' and op == 'schedule':
+              key = os.environ['SCHEDULE_KEY']
+              raw_enabled = os.environ['SCHEDULE_ENABLED']
+              if key not in (*keys, 'all') or raw_enabled not in ('true', 'false'):
+                  raise ValueError('Invalid schedule operation')
+              for item in (keys if key == 'all' else (key,)):
+                  state[item] = raw_enabled == 'true'
+              state['updated_at'] = dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(state, indent=2) + '\n', encoding='utf-8')
+              print('Schedule saved:', key, raw_enabled)
+          elif event == 'schedule':
+              cron_to_key = {
+                  '10 0,6,12,18 * * *': 'every_6_hours',
+                  '10 9 * * *': 'morning_0910',
+                  '5 17 * * *': 'evening_1705',
+              }
+              key = cron_to_key.get(os.environ.get('SCHEDULE_CRON'))
+              if not key:
+                  raise ValueError('Unknown cron schedule; refusing to guess')
+              do_fetch = state[key] is True
+              print('Scheduled check', key, 'enabled:', do_fetch)
+          elif event == 'workflow_dispatch':
+              do_fetch = True
+          elif event == 'push':
+              do_fetch = False
+          else:
+              raise ValueError('Unexpected workflow event')
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write('fetch=' + str(do_fetch).lower() + '\n')
+          PY
+
       - name: Set up Python
-        if: github.event_name != 'push'
+        if: steps.plan.outputs.fetch == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Retrieve and validate official LA County JSON
-        if: github.event_name != 'push'
+        if: steps.plan.outputs.fetch == 'true'
         run: python scripts/fetch_results.py
 
-      - name: Commit saved vote data and last-checked time
+      - name: Commit latest data or schedule settings
         if: github.event_name != 'push'
         shell: bash
         run: |
-          if [[ -n "$(git status --porcelain -- data/results.json)" ]]; then
+          if [[ -n "$(git status --porcelain -- data/results.json data/schedule.json)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/results.json
-            git commit -m "Save LA mayor election report [skip ci]"
+            git add data/results.json data/schedule.json
+            git commit -m "Update LA mayor count or check schedule [skip ci]"
             git push
+          else
+            echo 'No saved data or schedule changes.'
           fi
 
-      # The JSON is fetched live; Pages deployment is only for manual runs or site changes.
+      # Published site reads JSON directly from the main branch; no Pages
+      # deployment required for vote checks or schedule-toggle changes.
       - name: Prepare static website
-        if: github.event_name != 'schedule'
+        if: github.event_name == 'push'
         shell: bash
         run: |
           mkdir -p _site/data _site/assets
           cp index.html _site/index.html
           cp trigger.html _site/trigger.html
           cp data/results.json _site/data/results.json
+          if [[ -f data/schedule.json ]]; then cp data/schedule.json _site/data/schedule.json; fi
           if [[ -d assets ]]; then cp -R assets/. _site/assets/; fi
 
       - name: Configure GitHub Pages
-        if: github.event_name != 'schedule'
+        if: github.event_name == 'push'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        if: github.event_name != 'schedule'
+        if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
 
       - name: Publish Pages website
-        if: github.event_name != 'schedule'
+        if: github.event_name == 'push'
         id: deployment
         uses: actions/deploy-pages@v4
