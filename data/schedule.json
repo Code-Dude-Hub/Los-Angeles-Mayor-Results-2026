@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "timezone": "America/Los_Angeles",
+  "every_6_hours": true,
+  "morning_0910": true,
+  "evening_1705": true,
+  "updated_at": null
+}
