@@ -2,9 +2,9 @@
   "schema_version": 1,
   "election_id": 4348,
   "latest": {
-    "stamp": "2026-11-06T09:24:30.163000-08:00",
-    "raman": 481556,
-    "bass": 426553
+    "stamp": "2026-11-06T16:37:22.463000-08:00",
+    "raman": 514900,
+    "bass": 446407
   },
   "history": [
     {
@@ -36,8 +36,13 @@
       "stamp": "2026-11-06T09:24:30.163000-08:00",
       "raman": 481556,
       "bass": 426553
+    },
+    {
+      "stamp": "2026-11-06T16:37:22.463000-08:00",
+      "raman": 514900,
+      "bass": 446407
     }
   ],
-  "last_checked_at": "2026-11-07T02:06:50+00:00",
+  "last_checked_at": "2026-11-07T02:57:33+00:00",
   "source_url": "https://results.lavote.gov/electionresults/json?electionid=4348"
 }
